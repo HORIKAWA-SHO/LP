@@ -620,7 +620,7 @@ body {
 /* SNSセクション */
 .social {
     padding: 5rem 0;
-    background: linear-gradient(135deg, #fdf4ff, #fef7ff);
+    background: linear-gradient(135deg, #f9faf9, #f3f4f6);
 }
 
 .social-content {
@@ -691,7 +691,7 @@ body {
 /* お問い合わせセクション */
 .contact {
     padding: 5rem 0;
-    background: white;
+    background: linear-gradient(135deg, #fafafa, #f5f5f5);
 }
 
 .contact-content {
@@ -766,11 +766,11 @@ body {
 .form-group select:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #d946ef;
+    border-color: #2d5016;
 }
 
 .submit-button {
-    background: linear-gradient(135deg, #d946ef, #ec4899);
+    background: linear-gradient(135deg, #2d5016, #4ade80);
     color: white;
     padding: 1rem 2rem;
     border: none;
@@ -784,12 +784,12 @@ body {
 
 .submit-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(217, 70, 239, 0.3);
+    box-shadow: 0 10px 25px rgba(45, 80, 22, 0.3);
 }
 
 /* フッター */
 .footer {
-    background: linear-gradient(135deg, #374151, #4b5563);
+    background: linear-gradient(135deg, #1f2937, #374151);
     color: white;
     padding: 3rem 0 1rem;
 }
@@ -805,7 +805,7 @@ body {
     font-size: 1.3rem;
     font-weight: 600;
     margin-bottom: 1rem;
-    color: #d946ef;
+    color: #4ade80;
 }
 
 .footer-info p {
@@ -827,7 +827,7 @@ body {
 }
 
 .footer-links a:hover {
-    color: #d946ef;
+    color: #4ade80;
 }
 
 .footer-social {
@@ -841,7 +841,7 @@ body {
     justify-content: center;
     width: 40px;
     height: 40px;
-    background: #d946ef;
+    background: #2d5016;
     color: white;
     border-radius: 50%;
     text-decoration: none;
@@ -849,7 +849,7 @@ body {
 }
 
 .footer-social a:hover {
-    background: #ec4899;
+    background: #4ade80;
     transform: translateY(-2px);
 }
 
