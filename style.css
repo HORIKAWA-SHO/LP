@@ -21,6 +21,11 @@ body {
     padding: 0 40px;
 }
 
+/* モバイルメニュートグル（デスクトップでは非表示） */
+.mobile-menu-toggle {
+    display: none;
+}
+
 /* ヘッダー */
 .header {
     background: rgba(255, 255, 255, 0.95);
@@ -923,6 +928,62 @@ body {
 }
 
 /* レスポンシブデザイン */
+
+/* タブレット用 */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 30px;
+    }
+    
+    .hero {
+        padding: 5rem 0;
+    }
+    
+    .hero-title {
+        font-size: 3.8rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.3rem;
+    }
+    
+    .section-title {
+        font-size: 2.8rem;
+    }
+    
+    .nav {
+        gap: 2rem;
+    }
+    
+    .nav a {
+        font-size: 1rem;
+    }
+    
+    .problems-grid,
+    .services-grid,
+    .pricing-grid,
+    .staff-grid,
+    .gallery-grid,
+    .blog-grid,
+    .social-links {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 3rem;
+    }
+    
+    .service-card,
+    .pricing-card,
+    .staff-card,
+    .blog-card,
+    .social-link {
+        padding: 3rem 2.5rem;
+    }
+    
+    .contact-content {
+        gap: 4rem;
+    }
+}
+
+/* モバイル用 */
 @media (max-width: 768px) {
     .container {
         padding: 0 20px;
@@ -961,7 +1022,37 @@ body {
     }
     
     .nav {
-        display: none;
+        position: fixed;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        padding: 2rem;
+        box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+        z-index: 999;
+    }
+    
+    .nav.active {
+        transform: translateY(-100%);
+    }
+    
+    .nav a {
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+        font-size: 1.2rem;
+    }
+    
+    .mobile-menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: #1a1a1a;
+        cursor: pointer;
+        padding: 0.5rem;
     }
     
     .problems,
@@ -1033,5 +1124,108 @@ body {
     
     .blog-image {
         height: 200px;
+    }
+}
+
+/* 小さなモバイル用 */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+        line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .cta-button {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+    }
+    
+    .service-card h3,
+    .pricing-card h3,
+    .staff-card h3 {
+        font-size: 1.6rem;
+    }
+    
+    .service-card p,
+    .pricing-card .duration,
+    .staff-description,
+    .blog-content p {
+        font-size: 1rem;
+    }
+    
+    .amount {
+        font-size: 3rem;
+    }
+    
+    .service-card,
+    .pricing-card,
+    .staff-card,
+    .blog-card,
+    .social-link {
+        padding: 2rem 1.5rem;
+    }
+    
+    .contact-info h3,
+    .contact-form h3 {
+        font-size: 1.8rem;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+    
+    .submit-button {
+        padding: 1.2rem 2rem;
+        font-size: 1.1rem;
+    }
+    
+    .footer {
+        padding: 3rem 0 1.5rem;
+    }
+    
+    .footer-info h3 {
+        font-size: 1.5rem;
+    }
+    
+    .footer-info p,
+    .footer-links a {
+        font-size: 1rem;
+    }
+}
+
+/* 横向きモバイル用 */
+@media (max-width: 768px) and (orientation: landscape) {
+    .hero {
+        min-height: 70vh;
+        padding: 3rem 0;
+    }
+    
+    .hero-title {
+        font-size: 2.8rem;
+    }
+    
+    .problems,
+    .services,
+    .pricing,
+    .staff,
+    .gallery,
+    .blog,
+    .social,
+    .contact {
+        padding: 4rem 0;
     }
 }

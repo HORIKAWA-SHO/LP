@@ -152,52 +152,85 @@ document.querySelectorAll('.social-link').forEach(link => {
 // ページ読み込み時のアニメーション
 window.addEventListener('load', function() {
     const hero = document.querySelector('.hero-content');
-    hero.style.opacity = '0';
-    hero.style.transform = 'translateY(50px)';
+    if (hero) {
+        hero.style.opacity = '0';
+        hero.style.transform = 'translateY(50px)';
+        
+        setTimeout(() => {
+            hero.style.transition = 'opacity 1s ease, transform 1s ease';
+            hero.style.opacity = '1';
+            hero.style.transform = 'translateY(0)';
+        }, 300);
+    }
     
-    setTimeout(() => {
-        hero.style.transition = 'opacity 1s ease, transform 1s ease';
-        hero.style.opacity = '1';
-        hero.style.transform = 'translateY(0)';
-    }, 300);
+    // 画像の遅延読み込み対応
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+        img.loading = 'lazy';
+    });
 });
 
-// レスポンシブメニュー（モバイル用）
-function createMobileMenu() {
-    const header = document.querySelector('.header .container');
+// モバイルメニューの制御
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const nav = document.querySelector('.nav');
+    const navLinks = document.querySelectorAll('.nav a');
     
-    if (window.innerWidth <= 768) {
-        if (!document.querySelector('.mobile-menu-button')) {
-            const menuButton = document.createElement('button');
-            menuButton.className = 'mobile-menu-button';
-            menuButton.innerHTML = '☰';
-            menuButton.style.cssText = `
-                background: none;
-                border: none;
-                font-size: 1.5rem;
-                color: #d946ef;
-                cursor: pointer;
-                display: block;
-            `;
+    // メニュートグルボタンのクリックイベント
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', function() {
+            nav.classList.toggle('active');
             
-            header.appendChild(menuButton);
-            
-            menuButton.addEventListener('click', function() {
-                nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
-                nav.style.position = 'absolute';
-                nav.style.top = '100%';
-                nav.style.left = '0';
-                nav.style.right = '0';
-                nav.style.background = 'white';
-                nav.style.flexDirection = 'column';
-                nav.style.padding = '1rem';
-                nav.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
-            });
-        }
+            // アイコンの切り替え
+            const icon = this.querySelector('i');
+            if (nav.classList.contains('active')) {
+                icon.className = 'fas fa-times';
+                this.setAttribute('aria-label', 'メニューを閉じる');
+                // スクロールを無効化
+                document.body.style.overflow = 'hidden';
+            } else {
+                icon.className = 'fas fa-bars';
+                this.setAttribute('aria-label', 'メニューを開く');
+                // スクロールを有効化
+                document.body.style.overflow = '';
+            }
+        });
     }
-}
-
-// ウィンドウリサイズ時の処理
-window.addEventListener('resize', createMobileMenu);
-createMobileMenu();
+    
+    // ナビゲーションリンクがクリックされた時にメニューを閉じる
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (nav.classList.contains('active')) {
+                nav.classList.remove('active');
+                const icon = mobileMenuToggle.querySelector('i');
+                icon.className = 'fas fa-bars';
+                mobileMenuToggle.setAttribute('aria-label', 'メニューを開く');
+                document.body.style.overflow = '';
+            }
+        });
+    });
+    
+    // ウィンドウリサイズ時の処理
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            nav.classList.remove('active');
+            const icon = mobileMenuToggle.querySelector('i');
+            icon.className = 'fas fa-bars';
+            mobileMenuToggle.setAttribute('aria-label', 'メニューを開く');
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // メニュー外をクリックした時にメニューを閉じる
+    document.addEventListener('click', function(e) {
+        if (!nav.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+            if (nav.classList.contains('active')) {
+                nav.classList.remove('active');
+                const icon = mobileMenuToggle.querySelector('i');
+                icon.className = 'fas fa-bars';
+                mobileMenuToggle.setAttribute('aria-label', 'メニューを開く');
+                document.body.style.overflow = '';
+            }
+        }
+    });
+});
