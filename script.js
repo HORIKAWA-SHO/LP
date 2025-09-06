@@ -16,11 +16,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 window.addEventListener('scroll', function() {
     const header = document.querySelector('.header');
     if (window.scrollY > 100) {
-        header.style.background = 'rgba(248, 232, 240, 0.95)';
-        header.style.backdropFilter = 'blur(10px)';
+        header.style.background = 'rgba(255, 255, 255, 0.98)';
+        header.style.backdropFilter = 'blur(20px)';
+        header.style.borderBottom = '1px solid rgba(0, 0, 0, 0.1)';
     } else {
-        header.style.background = 'linear-gradient(135deg, #f8e8f0 0%, #fdf2f8 100%)';
-        header.style.backdropFilter = 'none';
+        header.style.background = 'rgba(255, 255, 255, 0.95)';
+        header.style.backdropFilter = 'blur(20px)';
+        header.style.borderBottom = '1px solid rgba(0, 0, 0, 0.08)';
     }
 });
 
